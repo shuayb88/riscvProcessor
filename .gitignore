@@ -1,0 +1,19 @@
+# Quartus temporary database and internal files
+db/
+incremental_db/
+output_files/
+
+# Compiled bitstreams (the massive files sent to the FPGA)
+*.sof
+*.pof
+
+# Report and summary files
+*.rpt
+*.summary
+*.jdi
+*.done
+*.pin
+*.qws
+
+# History and backup files
+*.bak
