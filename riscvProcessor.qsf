@@ -429,3 +429,4 @@ set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_
 set_global_assignment -name VERILOG_FILE regFile.v
 set_global_assignment -name VERILOG_FILE ALU.v
 set_global_assignment -name VERILOG_FILE programCounter.v
+set_global_assignment -name VERILOG_FILE decode.v
