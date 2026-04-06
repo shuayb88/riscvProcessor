@@ -18,9 +18,9 @@ always @(*) begin
 		4'b0010: ALU_Out = In_A & In_B;			//and
 		4'b0011: ALU_Out = In_A | In_B;			//or
 		4'b0100: ALU_Out = In_A ^ In_B;			//xor
-		4'b0101: ALU_Out = In_A << In_B;			//sll
-		4'b0110: ALU_Out = In_A >> In_B;			//srl
-		4'b0111:	ALU_Out = $signed(In_A) >>> In_B; 		//shift right arithmetic (pad left with 1's)
+		4'b0101: ALU_Out = In_A << In_B[4:0];			//sll
+		4'b0110: ALU_Out = In_A >> In_B[4:0];			//srl
+		4'b0111:	ALU_Out = $signed(In_A) >>> In_B[4:0]; 		//shift right arithmetic (pad left with 1's)
 		4'b1000: ALU_Out = ($signed(In_A) < $signed(In_B)) ? 32'b1 : 32'b0; // SLT
 		4'b1001: ALU_Out = (In_A < In_B) ? 32'b1 : 32'b0;                   // SLTU
 		

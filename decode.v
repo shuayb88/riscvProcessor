@@ -18,6 +18,17 @@ module decode(
 	wire [11:0] Itypeimm = instr[31:20];
 	
 	always @(*) begin
+		reg_write = 0; 
+		mem_read = 0; 
+		mem_write = 0;
+		alu_src = 0; 
+		mem_to_reg = 0; 
+		branch = 0;
+		jump = 0; 
+		jump_reg = 0; 
+		lui = 0; 
+		auipc = 0;
+		alu_op = 4'b0000;
 		case(opcode)
 			7'b0110011: begin // R-type
 				reg_write = 1;
@@ -42,7 +53,7 @@ module decode(
                3'b100: alu_op = 4'b0100; // xori
 					3'b110: alu_op = 4'b0011; // ori
 					3'b111: alu_op = 4'b0010; // andi
-					3'b000: alu_op = 4'b0101; // slli
+					3'b001: alu_op = 4'b0101; // slli
 					3'b101: alu_op = Itypeimm[5] ? 4'b0111 : 4'b0110; // srai : srli
                3'b010: alu_op = 4'b1000; // slti
 					3'b011: alu_op = 4'b1001; // sltiu
@@ -69,8 +80,8 @@ module decode(
 					3'b001: alu_op = 4'b0000;	// bne
 					3'b100,  						// blt
 					3'b101: alu_op = 4'b1000;	// bge
-					3'b100,  						// bltu
-					3'b101: alu_op = 4'b1001;	// bgeu
+					3'b110,  						// bltu
+					3'b111: alu_op = 4'b1001;	// bgeu
 				endcase
 			end
 			7'b1101111: begin // JAL
@@ -86,7 +97,7 @@ module decode(
 			end
 			7'b0110111: begin // LUI
 				reg_write = 1;
-				auipc = 1;
+				lui = 1;
 				alu_src = 1;
 				alu_op = 4'b1111;
 			end

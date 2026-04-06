@@ -33,7 +33,7 @@ always @(posedge clk) begin
 
 	if(reset==1) begin
 		for(i=0; i<32; i=i+1) begin
-			registers[i] = 32'b0;
+			registers[i] <= 32'b0;
 		end
 	end
 

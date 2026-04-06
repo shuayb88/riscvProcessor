@@ -1,6 +1,6 @@
 module rv32iCore(
 	input clk, 
-	input reset, 
+	input reset 
 	
 	
 	);

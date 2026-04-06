@@ -2,7 +2,7 @@ module instrMem(
 	input wire clk, 
 	input wire reset, 
 	input wire [31:0] pc, 
-	output wire [31:0] instr, 
+	output wire [31:0] instr 
 	);
 
 	localparam MEM_DEPTH = 1024;
@@ -13,7 +13,7 @@ module instrMem(
 	wire [31:0] bram_out;
 
    instr_rom u_rom (
-		.clockclk),
+		.clock(clk),
 		.address(word_addr),
 		.q(bram_out)
 	);
