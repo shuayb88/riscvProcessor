@@ -77,7 +77,7 @@ module decode(
 				branch = 1;
 				case(funct3)
 					3'b000,  						// beq
-					3'b001: alu_op = 4'b0000;	// bne
+					3'b001: alu_op = 4'b0001;	// bne
 					3'b100,  						// blt
 					3'b101: alu_op = 4'b1000;	// bge
 					3'b110,  						// bltu

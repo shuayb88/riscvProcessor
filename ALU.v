@@ -23,13 +23,9 @@ always @(*) begin
 		4'b0111:	ALU_Out = $signed(In_A) >>> In_B[4:0]; 		//shift right arithmetic (pad left with 1's)
 		4'b1000: ALU_Out = ($signed(In_A) < $signed(In_B)) ? 32'b1 : 32'b0; // SLT
 		4'b1001: ALU_Out = (In_A < In_B) ? 32'b1 : 32'b0;                   // SLTU
-		
-		default: ALU_Out = 32'b0;
-
+		4'b1111: ALU_Out = In_B;					// Pass through for LUI
+		default: ALU_Out = 32'b0;	
 	endcase
-	
-	
-
 end
 
 assign zero = (ALU_Out == 32'b0);			//zero flag is high if output of current op is zero
