@@ -9,7 +9,7 @@ module dataMem(
 
 );
 
-reg [7:0] ram [0:1023];				//1024 slots, each slot = 8 bits = 1 byte
+reg [7:0] ram [0:63];				//1024 slots, each slot = 8 bits = 1 byte
 
 
 always @(*) begin						//All load (read) instructions
