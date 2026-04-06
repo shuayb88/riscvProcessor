@@ -431,3 +431,6 @@ set_global_assignment -name VERILOG_FILE regFile.v
 set_global_assignment -name VERILOG_FILE ALU.v
 set_global_assignment -name VERILOG_FILE programCounter.v
 set_global_assignment -name VERILOG_FILE decode.v
+set_global_assignment -name VERILOG_FILE instr_mem.v
+set_global_assignment -name MIF_FILE program.mif
+set_global_assignment -name QIP_FILE ip/instr_rom.qip
