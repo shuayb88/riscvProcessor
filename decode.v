@@ -43,6 +43,7 @@ module decode(
 					4'b1101: alu_op = 4'b0111;	// sra
 					4'b0010: alu_op = 4'b1000;	// slt
 					4'b0011: alu_op = 4'b1001;	// sltu
+					default: alu_op = 4'b0000;
 				endcase
 			end
 			7'b0010011: begin // I-Type ALU
@@ -54,9 +55,10 @@ module decode(
 					3'b110: alu_op = 4'b0011; // ori
 					3'b111: alu_op = 4'b0010; // andi
 					3'b001: alu_op = 4'b0101; // slli
-					3'b101: alu_op = Itypeimm[5] ? 4'b0111 : 4'b0110; // srai : srli
+					3'b101: alu_op = Itypeimm[10] ? 4'b0111 : 4'b0110; // srai : srli
                3'b010: alu_op = 4'b1000; // slti
 					3'b011: alu_op = 4'b1001; // sltiu
+					default: alu_op = 4'b0000;
 				endcase		
 			end
 			7'b0000011: begin // Load
@@ -82,6 +84,7 @@ module decode(
 					3'b101: alu_op = 4'b1000;	// bge
 					3'b110,  						// bltu
 					3'b111: alu_op = 4'b1001;	// bgeu
+					default: alu_op = 4'b0000;
 				endcase
 			end
 			7'b1101111: begin // JAL
