@@ -14,6 +14,7 @@ reg [7:0] ram [0:1023];				//1024 slots, each slot = 8 bits = 1 byte
 
 always @(*) begin						//All load (read) instructions
 
+	read_data = 32'b0;				//default value to prevent a latch
 
 	if(mem_read) begin
 		case(funct3)
