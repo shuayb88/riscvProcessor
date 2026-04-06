@@ -8,6 +8,7 @@ module regFile(
 	
 	output wire [31:0] read_data1,
 	output wire [31:0] read_data2,
+	output wire [31:0] x10,				//permanent output to wire to sevenSeg
 	
 	input clk, 
 	input regWrite, 
@@ -27,6 +28,7 @@ integer i;										//index for for-loop in sequential block
 assign read_data1 = (read_addr1 != 0) ? registers[read_addr1] : 0;
 assign read_data2 = (read_addr2 != 0) ? registers[read_addr2] : 0;
 
+assign x10 = registers[10];
 
 
 always @(posedge clk) begin
@@ -37,7 +39,7 @@ always @(posedge clk) begin
 		end
 	end
 
-	if(regWrite==1 && write_addr != 5'b0) registers[write_addr] <= write_data;		//only write data on clock edge, if regWrite signal is enabled, and if the target reg is not x0
+	else if(regWrite==1 && write_addr != 5'b0) registers[write_addr] <= write_data;		//only write data on clock edge, if regWrite signal is enabled, and if the target reg is not x0
 
 	
 end

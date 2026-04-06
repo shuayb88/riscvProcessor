@@ -2,11 +2,13 @@ module rv32iCore(
 	input wire MAX10_CLK1_50, 
 	input wire KEY0, 
 	
-	output wire [9:0] LEDR
+	output wire [9:0] LEDR,
+	output wire [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5
 	);
 	
 	reg [23:0] prescaler = 0;
 	reg slow_clk = 0;
+	wire [31:0] x10;
 	
 	always @(posedge MAX10_CLK1_50) begin
 		if (prescaler == 24'd8_333_333) begin
@@ -139,7 +141,8 @@ module rv32iCore(
         .write_data (rd_data),
         .regWrite   (reg_write),
         .read_data1 (rs1_data),
-        .read_data2 (rs2_data)
+        .read_data2 (rs2_data),
+		  .x10 (x10)
     );
 
     ALU u_alu (
@@ -159,5 +162,107 @@ module rv32iCore(
         .funct3     (funct3),
         .read_data  (mem_rdata)
     );
+	 
+	
+	sevenSeg u_sevenSeg5(
+	 
+		.a (HEX5[0]),
+		.b (HEX5[1]),
+		.c (HEX5[2]),
+		.d (HEX5[3]),
+		.e (HEX5[4]),
+		.f (HEX5[5]),
+		.g (HEX5[6]),
+		.x0 (x10[20]),
+		.x1 (x10[21]),
+		.x2 (x10[22]),
+		.x3 (x10[23])
+	 
+	 
+	 );
+	 
+sevenSeg u_sevenSeg4(
+	 
+		.a (HEX4[0]),
+		.b (HEX4[1]),
+		.c (HEX4[2]),
+		.d (HEX4[3]),
+		.e (HEX4[4]),
+		.f (HEX4[5]),
+		.g (HEX4[6]),
+		.x0 (x10[16]),
+		.x1 (x10[17]),
+		.x2 (x10[18]),
+		.x3 (x10[19])
+	 
+	 
+	 );
+sevenSeg u_sevenSeg3(
+	 
+		.a (HEX3[0]),
+		.b (HEX3[1]),
+		.c (HEX3[2]),
+		.d (HEX3[3]),
+		.e (HEX3[4]),
+		.f (HEX3[5]),
+		.g (HEX3[6]),
+		.x0 (x10[12]),
+		.x1 (x10[13]),
+		.x2 (x10[14]),
+		.x3 (x10[15])
+	 
+	 
+	 );	 
+	 
+sevenSeg u_sevenSeg2(
+	 
+		.a (HEX2[0]),
+		.b (HEX2[1]),
+		.c (HEX2[2]),
+		.d (HEX2[3]),
+		.e (HEX2[4]),
+		.f (HEX2[5]),
+		.g (HEX2[6]),
+		.x0 (x10[8]),
+		.x1 (x10[9]),
+		.x2 (x10[10]),
+		.x3 (x10[11])
+	 
+	 
+	 );	
+
+	sevenSeg u_sevenSeg1(
+	 
+		.a (HEX1[0]),
+		.b (HEX1[1]),
+		.c (HEX1[2]),
+		.d (HEX1[3]),
+		.e (HEX1[4]),
+		.f (HEX1[5]),
+		.g (HEX1[6]),
+		.x0 (x10[4]),
+		.x1 (x10[5]),
+		.x2 (x10[6]),
+		.x3 (x10[7])
+	 
+	 
+	 );
+	 
+	 sevenSeg u_sevenSeg0(
+	 
+		.a (HEX0[0]),
+		.b (HEX0[1]),
+		.c (HEX0[2]),
+		.d (HEX0[3]),
+		.e (HEX0[4]),
+		.f (HEX0[5]),
+		.g (HEX0[6]),
+		.x0 (x10[0]),
+		.x1 (x10[1]),
+		.x2 (x10[2]),
+		.x3 (x10[3])
+	 
+	 
+	 );
 	 
 endmodule
