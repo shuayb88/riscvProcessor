@@ -1,4 +1,4 @@
-module instr_mem(
+module instrMem(
 	input wire clk, 
 	input wire reset, 
 	input wire [31:0] pc, 
