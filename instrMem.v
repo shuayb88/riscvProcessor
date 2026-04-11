@@ -4,17 +4,6 @@ module instrMem (
     input wire [31:0] pc,
     output reg [31:0] instr
 );
-
-	(* ramstyle = "M9K", rom_style = "M9K" *)
-	reg [31:0] mem [0:1023];
-
-	//integer i;
-	//initial begin
-	//	 for (i = 0; i < 1024; i = i + 1)
-	//		  mem[i] = 32'h00000013;  // fill with NOPs
-	//	 $readmemh("program.hex", mem);
-	//end
-
 	always @(posedge clk) begin
 		case (pc[11:2])
 		
